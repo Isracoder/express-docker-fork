@@ -18,7 +18,7 @@ services:
     restart: always
 
   app:
-    image:  ghcr.io/isracoder/express-docker-fork:9d1e0df
+    image:  ghcr.io/isracoder/express-docker-fork:$GIT_VERSION
     restart: always 
     environment:
       - PORT=80

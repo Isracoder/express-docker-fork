@@ -38,6 +38,7 @@ jobs:
         run: docker compose -f docker-compose-prod.yml up -d
         env:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          GIT_VERSION: ${{ steps.image-version.outputs.gitsha }}
       - name: print logs
         if: always()
         run: docker compose logs
