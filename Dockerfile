@@ -4,6 +4,8 @@ FROM node:20-alpine
 # Set the current working directory in the container
 WORKDIR /usr/app
 
+RUN apk add curl
+
 # Copy only two files to the image
 COPY package.json package-lock.json ./
 
@@ -15,5 +17,9 @@ ADD . .
 # Build the app
 RUN npm run build
 
-# When running the container, execute the following command
+HEALTHCHECK --interval=20s --timeout=3s \
+    CMD curl -f http://localhost || exit 1
+
 CMD node ./dist/main.js
+
+# When running the container, execute the following command
